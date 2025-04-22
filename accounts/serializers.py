@@ -5,13 +5,13 @@ from django.contrib.auth import get_user_model
 from accounts.models import Profile  
 
 User = get_user_model()
-
 class ProfileSerializer(serializers.ModelSerializer):
     profile_picture = serializers.ImageField(required=False, allow_null=True)
+
     class Meta:
         model = Profile
-        fields = ['first_name', 'last_name', 'bio', 'profile_picture', 'address', 'city', 'state', 'country']
-
+        fields = [
+            'first_name', 'last_name', 'bio', 'profile_picture','address', 'city','state', 'country', 'phone']
 
 # Custom User Create Serializer (for registration)
 class UserCreateSerializer(BaseUserCreateSerializer):
