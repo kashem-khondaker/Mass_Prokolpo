@@ -3,6 +3,7 @@ from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer
 from djoser.serializers import UserSerializer as BaseUserSerializer
 from django.contrib.auth import get_user_model
 from accounts.models import Profile  
+from .models import CustomUser
 
 User = get_user_model()
 class ProfileSerializer(serializers.ModelSerializer):
@@ -16,12 +17,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
         model = User
-        fields = ['id', 'role', 'email', 'password', 'phone']  
+        fields = ['id', 'role', 'email', 'password',]  
 
 
 # Custom User Serializer (for fetching logged-in user info with nested profile)
-class UserSerializer(BaseUserSerializer):
-    profile = ProfileSerializer(read_only=True)
+class UserSerializer(serializers.ModelSerializer):
+    profile = ProfileSerializer()
 
-    class Meta(BaseUserSerializer.Meta):
-        model = User
+    class Meta:
+        model = CustomUser
+        fields = ['id', 'email', 'role', 'profile']  
