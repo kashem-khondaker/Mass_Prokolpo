@@ -10,8 +10,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = [
-            'first_name', 'last_name', 'bio', 'profile_picture','address', 'city','state', 'country', 'phone']
+        fields = ['first_name', 'last_name', 'bio', 'profile_picture','address', 'city','state', 'country', 'phone']
 
 # Custom User Create Serializer (for registration)
 class UserCreateSerializer(BaseUserCreateSerializer):
