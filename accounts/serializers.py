@@ -17,7 +17,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserCreateSerializer(BaseUserCreateSerializer):
     class Meta(BaseUserCreateSerializer.Meta):
         model = User
-        fields = ['id', 'role', 'email', 'password',]  
+        fields = ['id','first_name', 'last_name', 'role', 'email', 'password',]  
 
 
 # Custom User Serializer (for fetching logged-in user info with nested profile)
